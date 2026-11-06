@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Upozornění na nové směny podle tvých preferencí.">
+
+  <title>Hlídač směn SODAT</title>
+  
+  <link rel="icon" type="image/svg+xml" href="icon/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+</head>
+<body>
+  <main class="shell">
+    <section class="hero" id="top">
+        <h1>SODAT směny, které ti <span>vyhovují.</span></h1>
+    </section>
+
+    <section class="how-it-works">
+        <div class="how-steps">
+          <div class="how-step">
+              <span class="how-number">1</span>
+              <div>
+                  <strong>Vyber si preference</strong>
+                  <p>Práce, místo a čas směn.</p>
+              </div>
+          </div>
+
+          <div class="how-step">
+              <span class="how-number">2</span>
+              <div>
+                  <strong>Hlídáme nové nabídky</strong>
+                  <p>Automaticky hledáme nové směny.</p>
+              </div>
+          </div>
+
+          <div class="how-step">
+              <span class="how-number">3</span>
+              <div>
+                  <strong>Dostaneš e-mail</strong>
+                  <p>Když najdeme vhodnou směnu.</p>
+              </div>
+          </div>
+        </div>
+    </section>
+
+    <div class="layout">
+      <section class="card form-card" aria-labelledby="form-heading">
+        <div class="tabs" role="tablist" aria-label="Typ formuláře">
+          <button class="tab active" id="tab-subscribe" type="button" role="tab" aria-selected="true" aria-controls="panel-subscribe">Odebírat nabídky</button>
+          <button class="tab" id="tab-unsubscribe" type="button" role="tab" aria-selected="false" aria-controls="panel-unsubscribe">Zrušit oznámení</button>
+        </div>
+
+        <div id="panel-subscribe" role="tabpanel" aria-labelledby="tab-subscribe">
+          <div class="card-heading"><div><h2 id="form-heading">Nastavení hlídání směn</h2><p>Nastav si své preference a dostávej upozornění na nové směny, které ti vyhovují.</p></div></div>
+          <form id="subscribe-form">
+            <div class="field"><label for="email">E-mail <span class="required">*</span></label><input id="email" name="email" type="email" placeholder="tvuj@email.cz" autocomplete="email" maxlength="254" required></div>
+
+            <fieldset class="field"><legend>Typ práce</legend><div class="chips" id="work-categories">
+              <label class="chip"><input type="checkbox" value="restocking"><span>Doplňování zboží</span></label>
+              <label class="chip"><input type="checkbox" value="cashiering"><span>Pokladna</span></label>
+              <label class="chip"><input type="checkbox" value="service_counter"><span>Obslužný pult</span></label>
+              <label class="chip"><input type="checkbox" value="production"><span>Výroba</span></label>
+              <label class="chip"><input type="checkbox" value="truck_unloading"><span>Vykládka zboží</span></label>
+              <label class="chip"><input type="checkbox" value="gardening"><span>Zahradnictví</span></label>
+              <label class="chip"><input type="checkbox" value="purchasing_assistant"><span>Pomoc při nákupu</span></label>
+              <label class="chip"><input type="checkbox" value="other"><span>Ostatní</span></label>
+            </div><span class="hint">Vyber jednu nebo více možností.</span></fieldset>
+
+            <div class="two-col">
+              <div class="field"><label for="location">Lokalita</label><select id="location" name="location"><option value="anywhere">Kdekoliv</option><option value="brno_only">Pouze Brno</option></select></div>
+              <div class="field"><label for="age">Věk</label><select id="age" name="age"><option value="adult">18 a více let</option><option value="minor">Méně než 18 let</option></select></div>
+            </div>
+
+            <label class="toggle-row"><span><strong>Náhradnické směny</strong></span><input id="standby" type="checkbox" role="switch"><span class="toggle-ui" aria-hidden="true"></span></label>
+
+            <fieldset class="field"><legend>Dny, kdy chceš pracovat</legend><div class="day-grid" id="days">
+              <label class="day"><input type="checkbox" value="mon" checked><span>Po</span></label><label class="day"><input type="checkbox" value="tue" checked><span>Út</span></label><label class="day"><input type="checkbox" value="wed" checked><span>St</span></label><label class="day"><input type="checkbox" value="thu" checked><span>Čt</span></label><label class="day"><input type="checkbox" value="fri" checked><span>Pá</span></label><label class="day"><input type="checkbox" value="sat" checked><span>So</span></label><label class="day"><input type="checkbox" value="sun" checked><span>Ne</span></label>
+            </div></fieldset>
+
+            <fieldset class="field"><legend>Část dne</legend><div class="chips shift-chips" id="shifts">
+              <label class="chip"><input type="checkbox" value="morning" checked><span>Ráno <small>06-14</small></span></label>
+              <label class="chip"><input type="checkbox" value="afternoon" checked><span>Odpoledne <small>14-22</small></span></label>
+              <label class="chip"><input type="checkbox" value="night" checked><span>Noc <small>22-06</small></span></label>
+            </div></fieldset>
+
+            <div class="two-col">
+              <div class="field"><label for="salary">Minimální mzda <span class="optional">(nepovinné)</span></label><div class="input-unit"><input id="salary" name="minimum_salary" type="number" min="135" step="1" inputmode="numeric" placeholder="Bez omezení"><span>Kč/h</span></div></div>
+              <div class="field"><label for="duration">Maximální délka směny <span class="optional">(nepovinné)</span></label><div class="input-unit"><input id="duration" name="max_shift_duration" type="number" min="1" max="24" step="0.5" inputmode="decimal" placeholder="Bez omezení"><span>hod.</span></div></div>
+            </div>
+
+            <div class="field"><label for="criminal">Práce vyžadující výpis z rejstříku trestů</label><select id="criminal" name="criminal_record_jobs"><option value="yes">Mohu vykonávat</option><option value="no">Nechci / nemohu</option></select></div>
+            <div class="field"><label for="gender">Doporučení podle pohlaví</label><select id="gender" name="gender_preference"><option value="no">Bez omezení</option><option value="male">Muž</option><option value="female">Žena</option></select></div>
+            
+            <button class="button-primary" type="submit" id="subscribe-submit"><span>Zapnout upozornění</span></button>
+            <p class="privacy-note">Odesláním souhlasíš se zasíláním upozornění na nabídky. Údaje používáme pouze pro tento účel. Odběr můžeš kdykoliv zrušit.</p>
+            <div class="feedback" id="subscribe-feedback" role="status" aria-live="polite" hidden></div>
+          </form>
+        </div>
+
+        <div id="panel-unsubscribe" role="tabpanel" aria-labelledby="tab-unsubscribe" hidden>
+          <div class="card-heading"><div><h2>Zrušení upozornění na směny</h2><p class="privacy-note">Pošleme ti potvrzovací odkaz na e-mail. Kliknutím na něj odběr zrušíš.</p></div></div>
+          <form id="unsubscribe-form"><div class="field"><label for="unsubscribe-email">E-mail, který chceš odhlásit</label><input id="unsubscribe-email" type="email" placeholder="tvuj@email.cz" autocomplete="email" maxlength="254" required></div>
+            <button class="button-danger" type="submit" id="unsubscribe-submit">Poslat odhlašovací odkaz</button>
+            <div class="feedback" id="unsubscribe-feedback" role="status" aria-live="polite" hidden></div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <footer>Hlídač směn není provozován společností SODAT.</footer>
+  </main>
+</body>
+</html>
