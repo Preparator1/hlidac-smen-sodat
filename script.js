@@ -1,4 +1,4 @@
-const API_BASE_URL = "api.sodat-notifications.workers.dev";
+const API_BASE_URL = "https://api.sodat-notifications.workers.dev";
 
 const subscribeTab = document.getElementById("tab-subscribe");
 const unsubscribeTab = document.getElementById("tab-unsubscribe");
