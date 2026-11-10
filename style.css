@@ -882,3 +882,26 @@ footer{
     .tabs{gap:22px}
     .tab{font-size:12px}
 }
+
+.confirmation-card {
+    padding: 32px;
+}
+
+.confirmation-card .card-heading {
+    margin-bottom: 28px;
+}
+
+.confirmation-card .card-heading p {
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.confirmation-card .button-primary {
+    margin-top: 20px;
+}
+
+@media (max-width: 530px) {
+    .confirmation-card {
+        padding: 24px 18px;
+    }
+}
